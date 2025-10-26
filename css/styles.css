@@ -1,13 +1,10 @@
 /*#region Global Resets */
-
-/* Box-sizing for all elements */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* Reset margins for headings and paragraphs */
 h1,
 h2,
 h3,
@@ -19,7 +16,6 @@ p {
     margin-bottom: 0;
 }
 
-/* Reset margins and padding for lists */
 ul,
 ol {
     margin-top: 0;
@@ -28,7 +24,6 @@ ol {
     list-style: none;
 }
 
-/* Images as block elements */
 img {
     display: block;
     max-width: 100%;
@@ -44,7 +39,7 @@ img {
 
 /*#endregion CSS Variables */
 
-/*#region Global */
+/*#region Global Styles */
 body {
     font-family: "Roboto", sans-serif;
     background-color: #FFFFFF;
@@ -54,12 +49,10 @@ body {
     line-height: 24px;
 }
 
-/* button */
 button {
     cursor: pointer;
 }
 
-/* Links */
 a {
     color: inherit;
     text-decoration: none;
@@ -72,15 +65,12 @@ a:active {
     cursor: pointer;
 }
 
-/* Container */
 .container {
-    max-width: 1158px;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
-/* Visually hidden pattern for section 2 */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -94,13 +84,13 @@ a:active {
     overflow: hidden;
 }
 
-/*#endregion Global*/
+/*#endregion Global Styles*/
 
 /*#region Headings */
 h1 {
     font-weight: 700;
-    font-size: 56px;
-    line-height: 1.07;
+    font-size: 36px;
+    line-height: 1.11;
     letter-spacing: 0.02em;
     color: #2e2f42;
     text-align: center;
@@ -123,13 +113,19 @@ h3 {
     color: #2e2f42;
 }
 
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 56px;
+        line-height: 1.07;
+    }
+}
+
 /*#endregion Headings*/
 
 /*#region Header */
-
+/* Mobile First Styles */
 .page-header {
     border-bottom: 1px solid #e7e9fc;
-    /* Add shadow required by validator */
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
         0px 1px 1px rgba(46, 47, 66, 0.16),
         0px 1px 6px rgba(46, 47, 66, 0.08);
@@ -139,6 +135,8 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
 .page-nav {
@@ -147,13 +145,11 @@ h3 {
 }
 
 .menu,
-.contacts {
-    display: flex;
-    gap: 40px;
+.contact-info {
+    display: none;
 }
 
-/*#region Header: Logo */
-
+/*#region Logo */
 .header-logo {
     font-family: "Raleway", sans-serif;
     font-weight: 700;
@@ -162,7 +158,6 @@ h3 {
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #4d5ae5;
-    margin-right: 76px;
 }
 
 .header-logo:hover,
@@ -174,100 +169,313 @@ h3 {
     color: #2e2f42;
 }
 
-/*#endregion Header: Logo */
+/*#endregion Logo */
 
-/*#region Header: Navigation */
-
-.menu {
-    color: #2e2f42;
+/*#region Mobile Menu Button */
+.mobile-menu-open-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
-.menu a {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
+.mobile-menu-open-icon {
+    fill: #2f2f37;
 }
 
-.nav-link {
-    display: block;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+/*#endregion Mobile Menu Button */
+
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+
+    .mobile-menu-open-btn {
+        display: none;
+    }
+
+    .menu,
+    .contact-info {
+        display: flex;
+    }
+
+    .page-header .container {
+        padding-top: 0;
+        padding-bottom: 0;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-logo {
+        margin-right: 120px;
+    }
+
+    /*#region Navigation */
+    .menu {
+        color: #2e2f42;
+        gap: 40px;
+    }
+
+    .menu a {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+    }
+
+    .nav-link {
+        display: block;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        color: #404bbf;
+    }
+
+    .nav-link.current {
+        color: #404bbf;
+        position: relative;
+    }
+
+    .nav-link.current::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        bottom: -1px;
+        background-color: #404bbf;
+        border-radius: 2px;
+    }
+
+    /*#endregion Navigation */
+
+    /*#region Contacts */
+    .contact-info {
+        font-style: normal;
+        padding: 16px 16px 16px 0;
+    }
+
+    .contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .contact-link {
+        display: block;
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 12px;
+        line-height: 1.17;
+        letter-spacing: 0.02em;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .contact-link:hover,
+    .contact-link:focus {
+        color: #404bbf;
+    }
+
+    /*#endregion Contacts */
 }
 
-.nav-link:hover,
-.nav-link:focus {
-    color: #404bbf;
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .container {
+        max-width: 1158px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .header-logo {
+        margin-right: 76px;
+    }
+
+    .contact-info {
+        font-style: normal;
+        padding: 0;
+    }
+
+    .contacts {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .contact-link {
+        display: block;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }
-
-/*#endregion Navigation */
-
-/*#region Active Link Styles */
-
-/* 1. Styles for active link */
-.nav-link.current {
-    color: #404bbf;
-    position: relative;
-}
-
-/* 2. Create pseudo-element underline */
-.nav-link.current::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    bottom: -1px;
-    background-color: #404bbf;
-    border-radius: 2px;
-}
-
-/*#endregion Active Link Styles */
-
-/*#region Header: Contacts */
-
-.contact-info {
-    font-style: normal;
-}
-
-.contact-link {
-    display: block;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    letter-spacing: 0.02em;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.contact-link:hover,
-.contact-link:focus {
-    color: #404bbf;
-}
-
-/*#endregion Contacts */
 
 /*#endregion Header */
 
-/*#region Hero */
+/*#region Mobile Menu */
+.mobile-menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #fcfcfc;
+    z-index: 998;
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.mobile-menu-container.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.mobile-menu-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 80px 24px 40px 40px;
+    justify-content: space-between;
+}
+
+.mobile-menu-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e7e9fc;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+        border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-close-btn:hover,
+.mobile-menu-close-btn:focus {
+    background-color: #404bbf;
+    border: none;
+}
+
+.mobile-menu-close-icon {
+    fill: #2e2f42;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-close-btn:hover .mobile-menu-close-icon,
+.mobile-menu-close-btn:focus .mobile-menu-close-icon {
+    fill: #ffffff;
+}
+
+.mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.mobile-nav-link {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.11111;
+    letter-spacing: 0.02em;
+    color: #2e2f42;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+    color: #404bbf;
+}
+
+.mobile-contacts-block {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.mobile-contact-info {
+    font-style: normal;
+}
+
+.mobile-contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mobile-contact-link {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: #434455;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-contact-link:hover,
+.mobile-contact-link:focus {
+    color: #4d5ae5;
+}
+
+.mobile-social-list {
+    display: flex;
+    gap: 24px;
+}
+
+.mobile-social-list .team-social-icon {
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+    .mobile-menu-container {
+        display: none;
+    }
+}
+
+/*#endregion Mobile Menu */
+
+/*#region Hero */
+/* Mobile First Styles */
 .hero {
-    /* Fallback colour */
     background-color: #2e2f42;
-    /* Multi-layered background */
     background-image:
-        /* Layer 1: Gradient */
-        linear-gradient(rgba(46, 47, 66, 0.7),
-            rgba(46, 47, 66, 0.7)),
-        /* Layer 2: Image */
-        url("../images/people-office.jpg");
+        linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+        url("../images/hero/Dark-bg-mob.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 188px 0;
-    /* Width limitation for section */
-    max-width: 1440px;
+    padding: 112px 0;
     margin: 0 auto;
-    /* Center the section */
+}
+
+/* Retina for Mobile */
+@media screen and (min-width: 320px) and (min-resolution: 192dpi),
+screen and (min-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+    .hero {
+        background-image:
+            linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero/Dark-bg-mob@2x.jpg");
+    }
 }
 
 .hero .container {
@@ -276,8 +484,7 @@ h3 {
 
 .hero-title {
     color: #ffffff;
-    max-width: 496px;
-    margin: 0 auto 48px;
+    margin: 0 auto 72px;
 }
 
 .hero-button {
@@ -294,7 +501,6 @@ h3 {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-    /* Transition for the 'Order Service' button */
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -303,46 +509,80 @@ h3 {
     background-color: #404bbf;
 }
 
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .hero {
+        background-image:
+            linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero/Dark-bg-tab.jpg");
+    }
+
+    /* Retina for Tablet */
+    @media (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2) {
+        .hero {
+            background-image:
+                linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+                url("../images/hero/Dark-bg-tab@2x.jpg");
+        }
+    }
+
+    .hero-title {
+        max-width: 496px;
+        margin: 0 auto 36px;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .hero {
+        background-image:
+            linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+            url("../images/hero/people-office.jpg");
+        padding: 188px 0;
+        max-width: 1440px;
+    }
+
+    /* Retina for Desktop */
+    @media (min-resolution: 192dpi),
+    (-webkit-min-device-pixel-ratio: 2) {
+        .hero {
+            background-image:
+                linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)),
+                url("../images/hero/people-office@2x.jpg");
+        }
+    }
+
+    .hero-title {
+        margin: 0 auto 48px;
+    }
+}
+
 /*#endregion Hero */
 
 /*#region Features */
-
+/* Mobile First Styles */
 .features {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 96px;
+    padding-bottom: 96px;
+}
+
+.features-icon-box {
+    display: none;
 }
 
 .features-list {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    gap: 72px;
 }
-
-.features-item {
-    width: calc((100% - 3 * 24px) / 4);
-}
-
-/*#region Styles for integrating svg icons */
-
-.features-icon-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 112px;
-    background-color: #f4f4fd;
-    border: 1px solid #8e8f99;
-    border-radius: 4px;
-    margin-bottom: 8px;
-
-}
-/*#endregion Styles for integrating svg */
 
 .features-title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.11111;
     letter-spacing: 0.02em;
-    color: #2e2f42;
+    text-align: center;
     margin-bottom: 8px;
 }
 
@@ -350,31 +590,82 @@ h3 {
     letter-spacing: 0.02em;
 }
 
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .features-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 72px 24px;
+    }
+
+    .features-item {
+        width: calc((100% - 1 * 24px) / 2);
+    }
+
+    .features-title {
+        text-align: left;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .features {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .features-icon-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 112px;
+        background-color: #f4f4fd;
+        border: 1px solid #8e8f99;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+
+    .features-list {
+        gap: 24px;
+    }
+
+    .features-item {
+        width: calc((100% - 3 * 24px) / 4);
+    }
+
+    .features-title {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
 /*#endregion Features */
 
 /*#region Team */
-
+/* Mobile First Styles */
 .team {
     background-color: #f4f4fd;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 96px;
+    padding-bottom: 96px;
 }
 
 .team-title {
-    line-height: 1.11;
     text-transform: capitalize;
-    text-align: center;
     margin-bottom: 72px;
 }
 
 .team-list {
     display: flex;
-    gap: 24px;
+    flex-direction: column;
+    gap: 72px;
+    align-items: center;
 }
 
 .team-item {
     background-color: #ffffff;
-    width: calc((100% - 3 * 24px) / 4);
+    width: 264px;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
         0 1px 1px 0 rgba(46, 47, 66, 0.16),
@@ -383,8 +674,6 @@ h3 {
 
 .team-item img {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
 }
 
 .team-content {
@@ -396,30 +685,20 @@ h3 {
 }
 
 .team-name {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    color: #2e2f42;
     text-align: center;
 }
 
 .team-text {
-    font-size: 16px;
-    letter-spacing: 0.02em;
     text-align: center;
+    letter-spacing: 0.02em;
 }
 
-/*#region Social media icons styles */
-
-/* 1. Social media list (container) */
 .team-social-list {
     display: flex;
     justify-content: center;
     gap: 24px;
 }
 
-/* 2. Round button/link styling */
 .team-social-link {
     display: flex;
     justify-content: center;
@@ -432,49 +711,66 @@ h3 {
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 3. Hover/Focus effect */
 .team-social-link:hover,
 .team-social-link:focus {
-    /* Changed the background color as required by the validator */
     background-color: #404bbf;
 }
 
-/* 4. SVG icon */
 .team-social-icon {
-    width: 24px;
-    height: 24px;
-    /* Explicitly setting the icon color as required by the validator */
+    width: 16px;
+    height: 16px;
     fill: #f4f4fd;
 }
 
-/*#endregion Social media icons styles */
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .team-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 64px 24px;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .team {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .team-list {
+        gap: 24px;
+    }
+}
 
 /*#endregion Team */
 
 /*#region Portfolio */
-
+/* Mobile First Styles */
 .portfolio {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 96px;
+    padding-bottom: 96px;
 }
 
 .portfolio-title {
-    line-height: 1.11;
     text-transform: capitalize;
-    text-align: center;
     margin-bottom: 72px;
 }
 
 .portfolio-list {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 24px;
-    row-gap: 48px;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
 }
 
 .portfolio-item {
-    width: calc((100% - 2 * 24px) / 3);
+    width: 288px;
+    height: 400px;
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item:hover {
@@ -486,14 +782,8 @@ h3 {
 
 .portfolio-item img {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
-}
-
-.portfolio-link {
-    display: block;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .portfolio-img-wrap {
@@ -505,21 +795,16 @@ h3 {
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     background-color: #4d5ae5;
-    color: var(--CLOUD, #f4f4fd);
-
+    color: var(--cloud, #f4f4fd);
     padding: 40px 32px;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
-
     transform: translateY(100%);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
     margin: 0;
 }
 
@@ -531,14 +816,10 @@ h3 {
     padding: 32px 16px;
     border: 1px solid #e7e9fc;
     border-top: none;
+    flex-grow: 1;
 }
 
 .portfolio-name {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    color: #2e2f42;
     margin-bottom: 8px;
 }
 
@@ -547,25 +828,65 @@ h3 {
     color: #434455;
 }
 
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .portfolio-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 48px 24px;
+    }
+
+    .portfolio-item {
+        width: 356px;
+        height: 420px;
+    }
+
+    .portfolio-item img {
+        height: 300px;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .portfolio {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .portfolio-list {
+        justify-content: flex-start;
+    }
+
+    .portfolio-item {
+        width: calc((100% - 2 * 24px) / 3);
+        height: auto;
+    }
+
+    .portfolio-item img {
+        height: 300px;
+    }
+}
+
 /*#endregion Portfolio */
 
 /*#region Footer */
-
+/* Mobile First Styles */
 .footer {
     background-color: #2e2f42;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 96px;
+    padding-bottom: 96px;
 }
 
 .footer-container {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
 }
 
-/* Logo block */
 .footer-logo-wrap {
-    max-width: 264px;
-    margin-right: 120px;
+    text-align: center;
 }
 
 .footer-logo {
@@ -592,15 +913,13 @@ h3 {
 .footer-text {
     color: #f4f4fd;
     letter-spacing: 0.02em;
-    width: 264px;
+    text-align: left;
 }
 
-/*#region Styles for social media block */
 .footer-social-block {
-    margin-right: 80px;
+    text-align: center;
 }
 
-/* Title "Social media" */
 .footer-social-text {
     font-weight: 500;
     line-height: 1.5;
@@ -609,35 +928,27 @@ h3 {
     margin-bottom: 16px;
 }
 
-/* List of icons (Flexbox container) */
 .footer-social-list {
     display: flex;
+    justify-content: center;
     gap: 16px;
 }
 
-/* Link button for icon */
 .footer-social-link {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Size of the outer round button */
     width: 40px;
     height: 40px;
     border-radius: 50%;
-
-    /* Base colours */
     background-color: #4d5ae5;
     color: #f4f4fd;
-    /* Icon colour (for SVG) */
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* SVG icon */
 .footer-social-icon {
     width: 24px;
     height: 24px;
-    /* Explicitly set the icon color */
     fill: #f4f4fd;
 }
 
@@ -646,35 +957,33 @@ h3 {
     background-color: #31d0aa;
 }
 
-/*#endregion Styles for social media block */
+.footer-subscribe-wrap {
+    width: 100%;
+}
 
-/*#region Subscribe form styles */
-
-/* Title "Subscribe" */
 .footer-subscribe-text {
     font-weight: 500;
     line-height: 1.5;
     letter-spacing: 0.02em;
     color: #ffffff;
     margin-bottom: 16px;
+    text-align: center;
 }
 
-/* Container for the form (Input + Button) */
 .footer-form {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    /* Added for vertical alignment */
-    gap: 24px;
+    gap: 16px;
 }
 
-/* Email label wrapper */
 .footer-email-label {
     display: block;
+    width: 100%;
 }
 
-/* Email input field */
 .footer-form-input {
-    width: 264px;
+    width: 100%;
     height: 40px;
     border: 1px solid #ffffff;
     border-radius: 4px;
@@ -697,7 +1006,6 @@ h3 {
     outline: none;
 }
 
-/* "Subscribe" button */
 .subscribe-btn {
     min-width: 165px;
     height: 40px;
@@ -721,24 +1029,97 @@ h3 {
     background-color: #404bbf;
 }
 
-/* "Send" icon */
 .subscribe-icon {
     width: 24px;
     height: 24px;
     fill: #ffffff;
     margin-left: 16px;
-    /* Replaced gap with margin-left */
 }
 
-/*#endregion Subscribe form styles */
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .footer-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 72px 24px;
+        padding-left: 108px;
+        padding-right: 108px;
+    }
+
+    .footer-logo-wrap {
+        text-align: left;
+        margin: 0;
+    }
+
+    .footer-text {
+        width: 264px;
+        text-align: left;
+    }
+
+    .footer-social-block {
+        text-align: left;
+        margin: 0;
+    }
+
+    .footer-social-list {
+        justify-content: flex-start;
+    }
+
+    .footer-subscribe-wrap {
+        width: auto;
+        margin: 0;
+    }
+
+    .footer-subscribe-text {
+        text-align: left;
+    }
+
+    .footer-form {
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .footer-email-label {
+        width: auto;
+    }
+
+    .footer-form-input {
+        width: 264px;
+        max-width: none;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1158px) {
+    .footer {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .footer-container {
+        flex-wrap: nowrap;
+        align-items: baseline;
+        gap: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .footer-logo-wrap {
+        margin-right: 120px;
+    }
+
+    .footer-social-block {
+        margin-right: 80px;
+    }
+}
 
 /*#endregion Footer */
 
-/*#region Main form + Overlay */
-
-/*#region MODAL WINDOW STYLES */
-
-/* Backdrop/Overlay for modal window */
+/*#region Modal */
+/* Mobile First Styles */
 .model-overlay {
     position: fixed;
     top: 0;
@@ -754,43 +1135,31 @@ h3 {
         visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Class for displaying modal */
 .model-overlay.is-open {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
 }
 
-/*#endregion*/
-
-/*#region MODAL CONTAINER */
-
-/* Modal window itself */
 .model {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 408px;
-    min-height: 584px;
+    width: 288px;
+    height: 623px;
+    padding: 72px 16px 24px 16px;
     background-color: #fcfcfc;
     border-radius: 4px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
         0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 2px 1px 0 rgba(0, 0, 0, 0.2);
-    padding: 72px 24px 24px 24px;
     transform: translate(-50%, -50%) scale(1);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scale effect when modal is closed */
 .model-overlay:not(.is-open) .model {
     transform: translate(-50%, -50%) scale(0.9);
 }
 
-/*#endregion*/
-
-/*#region CLOSE BUTTON */
-
-/* Close button styling */
 .model-close-btn {
     position: absolute;
     top: 24px;
@@ -809,30 +1178,22 @@ h3 {
         border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover and focus effects for button */
 .model-close-btn:hover,
 .model-close-btn:focus {
     background-color: #404bbf;
     border: none;
 }
 
-/* Icon styling */
 .model-close-icon {
     fill: #2e2f42;
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Style for icon inside button (changes color on button hover) */
 .model-close-btn:hover .model-close-icon,
 .model-close-btn:focus .model-close-icon {
     fill: #ffffff;
 }
 
-/*#endregion*/
-
-/*#region MODAL TITLE */
-
-/* Modal window title */
 .model-title {
     font-weight: 500;
     font-size: 16px;
@@ -843,21 +1204,14 @@ h3 {
     margin-bottom: 16px;
 }
 
-/*#endregion*/
-
-/*#region MODAL FORM STYLES */
-
-/* Wrapper for a form field (label + input) */
 .model-form-field-wrapper {
     margin-bottom: 8px;
 }
 
-/* Wrapper for input and icon */
 .input-wrap {
     position: relative;
 }
 
-/* Form labels (Name, Phone, Email, Comment) */
 .model-form-label {
     display: block;
     margin-bottom: 4px;
@@ -867,7 +1221,6 @@ h3 {
     color: #8e8f99;
 }
 
-/* Input and textarea fields styling */
 .model-form-input {
     width: 100%;
     height: 40px;
@@ -879,13 +1232,11 @@ h3 {
     transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Focus effect on input fields */
 .model-form-input:focus {
     border-color: #4d5ae5;
     outline: none;
 }
 
-/* Icon inside the input field */
 .model-form-icon {
     position: absolute;
     left: 16px;
@@ -895,17 +1246,14 @@ h3 {
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Icon color change on input focus */
 .model-form-input:focus+.model-form-icon {
     fill: #4d5ae5;
 }
 
-/* Margin for the last text field ("Comment") before the checkbox */
 .model-form-comment-wrapper {
     margin-bottom: 16px;
 }
 
-/* Textarea (Comment) */
 .model-form-textarea {
     width: 100%;
     height: 120px;
@@ -930,24 +1278,19 @@ h3 {
     border-color: #4d5ae5;
 }
 
-/*#endregion*/
-
-/*#region CUSTOM CHECKBOX */
-
-/* Checkbox block wrapper */
 .model-form-checkbox-wrapper {
     margin-bottom: 24px;
 }
 
-/* General style for text and custom checkbox */
 .model-form-label-checkbox {
+    display: flex;
+    align-items: flex-start;
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.04em;
     color: #8e8f99;
 }
 
-/* Visual representation of the checkbox (16x16 square) */
 .model-form-own-checkbox {
     width: 16px;
     height: 16px;
@@ -956,7 +1299,7 @@ h3 {
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
         border 250ms cubic-bezier(0.4, 0, 0.2, 1),
         fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     fill: transparent;
@@ -965,23 +1308,21 @@ h3 {
     flex-shrink: 0;
 }
 
-/* Effect when checkbox is activated */
+.model-form-checkbox-text {
+    flex-grow: 1;
+}
+
 .model-form-checkbox:checked+.model-form-label-checkbox .model-form-own-checkbox {
     background-color: #404bbf;
     border: none;
     fill: #f4f4fd;
 }
 
-/* "Privacy Policy" link */
 .privacy-policy-link {
     color: #4d5ae5;
     text-decoration: underline;
     text-decoration-skip-ink: none;
 }
-
-/*#endregion*/
-
-/*#region SUBMIT BUTTON */
 
 .model-send-btn {
     display: block;
@@ -1007,24 +1348,14 @@ h3 {
     background-color: #404bbf;
 }
 
-/*#endregion*/
-
-/*#region UTILITY CLASSES */
-
-/* Visually hidden class for accessibility */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+/* Tablet/Desktop Styles */
+@media screen and (min-width: 768px) {
+    .model {
+        width: 408px;
+        min-height: 584px;
+        height: auto;
+        padding: 72px 24px 24px 24px;
+    }
 }
 
-/*#endregion*/
-
-/*#endregion Main form+Overlay*/
+/*#endregion Modal */

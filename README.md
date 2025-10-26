@@ -1,40 +1,63 @@
-GoIT Markup Homework #5: Modal Window and Forms
-Description of the Assignment
-This repository contains the solution for GoIT Markup Homework #5. The main goal of this assignment is to add interactive UI elements: a feedback modal window and a newsletter subscription form in the footer, using advanced CSS positioning and form styling techniques.
+GoIT Markup Homework #6: Responsive Design
 
-The work focuses on ensuring semantic correctness, accessibility (hidden checkbox, label binding), and implementing smooth CSS transitions.
+Description of the Assignment
+
+This repository contains the solution for GoIT Markup Homework #6. The primary goal of this assignment was to implement a fully responsive design for the webpage, converting the initial desktop-first layout to follow the Mobile First methodology. The adaptation targets three specific breakpoints: 320px (mobile), 768px (tablet), and 1158px (desktop).
+
+The work focused on restructuring the CSS using min-width media queries, ensuring correct layout and element visibility across different screen sizes, implementing a functional mobile menu, and optimizing images for high-resolution (Retina) displays.
 
 🛠️ Key Technical Features
+
 The following key technical solutions were implemented in this assignment:
 
-1. Modal Window Mechanism
-   Backdrop Implementation: A fixed .model-overlay was created, which fills 100% of the viewport and uses a high z-index to overlap the content.
+Mobile First CSS Structure
 
-Centering: The modal window (.model) is centered within the backdrop using Flexbox (justify-content: center, align-items: center on .model-overlay).
+Base Styles: The CSS was rewritten so that styles outside of media queries apply to the smallest screen size (320px+).
 
-Toggle Mechanism: A toggle class .is-open is used to show/hide the modal window and enable interactivity (opacity: 1, pointer-events: auto).
+Media Queries (min-width): Styles for tablet (768px+) and desktop (1158px+) were added progressively within @media screen and (min-width: ...) rules, overriding or extending the base mobile styles.
 
-2. Form Styling and Interactivity
-   Forms: Two forms were created: a contact form in the modal window and a subscription form in the footer.
+Breakpoint Adherence: Layout adjustments strictly follow the specified breakpoints of 320px, 768px, and 1158px.
 
-Icon Positioning: Icons inside input fields are positioned using absolute positioning (position: absolute) relative to their parent element.
+Responsive Layout Adaptation
 
-Focus Effects: When an input receives focus, its border and icon change to an accent color (#4d5ae5).
+Flexbox Layouts: display: flex along with flex-direction, gap, justify-content, and align-items was used extensively to manage the layout of elements within sections (e.g., Header, Footer, Team list, Portfolio list).
 
-3. Custom Checkbox
-   Accessibility: The original checkbox is hidden using the .visually-hidden class.
+Conditional Display: Elements like the desktop navigation/contacts and the mobile menu button are conditionally displayed or hidden using display: none; based on the active media query.
 
-Custom Styling: A visual representation (a 16x16px square) was created with an SVG checkmark from a sprite, which appears in the :checked state.
+Calculated Widths (calc()): For sections with flexible grid items (like Portfolio on desktop), the calc() function was used to determine item widths based on the container width and gap size. (Note: Fixed widths were used for Portfolio on mobile/tablet per requirements).
 
-4. Semantics and Accessibility
-   Labels: All input fields (including textarea) are linked to their corresponding text descriptions using the <label> tag with a for/id connection.
+Fixed Width Approach: For sections with fixed-width items (like Team), width was set directly, and justify-content: center with flex-wrap: wrap was used on the container to manage arrangement.
 
-Buttons: The type="submit" attribute is set for the submission buttons.
+Text Alignment: text-align properties were adjusted within media queries to match the design requirements for different screen sizes.
 
-5. CSS Transitions
-   Smooth Effects: Smooth transitions are configured for all interactive elements (buttons, links, inputs, modal window) with a duration of 250ms and the cubic-bezier(0.4, 0, 0.2, 1) timing function.
+Mobile Menu Implementation
+
+Full Viewport: The .mobile-menu-container is styled with position: fixed, width: 100%, and height: 100vh to cover the entire viewport.
+
+Initial State (Hidden): By default, the menu is hidden off-screen using transform: translateX(100%); and visibility: hidden;. [cite: C5]
+
+Activation (.is-open): An .is-open class selector is defined in CSS to transition the menu into view (transform: translateX(0); visibility: visible;).
+
+Internal Layout: display: flex, flex-direction: column, and justify-content: space-between are used within .mobile-menu-inner to structure the navigation, contacts, and social links according to the Menu.pdf layout.
+
+Modal Window Adaptation
+
+Responsive Sizing: The width, height, and padding of the existing modal window (.model) are adjusted using media queries to fit smaller screens appropriately while maintaining the desktop layout on larger screens.
+
+Responsive Background Images (Retina Support)
+
+CSS Backgrounds: Different background images are applied to the .hero section for mobile, tablet, and desktop breakpoints using background-image within the respective base styles and media queries.
+
+Retina Support: @media (min-resolution: 192dpi) queries are used alongside the breakpoint media queries to serve high-resolution (@2x) background images to devices with high pixel density.
+
+Content Images (<img> Retina Support)
+
+srcset Attribute: The srcset attribute is added to all <img> tags within the .team and .portfolio sections, providing paths to both 1x and 2x image versions. This allows the browser to automatically select and load the appropriate image based on the device's pixel density. [cite: B3]
+
+width and height Attributes: Explicit width and height attributes are set on <img> tags to improve rendering performance by allowing the browser to reserve space for the image before it loads.
 
 🚀 Live Page
+
 The project is hosted on GitHub Pages. You can view the live result here:
 
-[https://idziamko.github.io/goit-markup-hw-05/]
+[https://idziamko.github.io/goit-markup-hw-06/]
